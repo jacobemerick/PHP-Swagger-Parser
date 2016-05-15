@@ -56,7 +56,7 @@ class SchemaResolver
             case 'parameters':
                 return $this->getDocument()
                     ->getParameters()
-                    ->getParameter($pointer->getSegment(1));
+                    ->getDefinition($pointer->getSegment(1));
             case 'responses':
                 return $this->getDocument()
                     ->getResponses()
@@ -180,7 +180,7 @@ class SchemaResolver
         $ref = $reference->getRef();
     
         if($reference->hasUri()) {
-            $uri = $reference->getUri()
+            $uri = $reference->getUri();
             if(!$this->hasRelativeResolver($uri)) {
                 throw (new SwaggerException\RelativeResolverUnavailableException)
                     ->setUri($uri);
